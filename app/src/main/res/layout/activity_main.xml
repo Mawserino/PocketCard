@@ -183,7 +183,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:background="@drawable/rectangle_rounded_edge"
+            style="@style/Widget.AppCompat.Button"
             android:text="Login"
             android:textAllCaps="false"
             android:textColor="@color/colorWhite" />
@@ -195,24 +195,24 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="45dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="-15dp"
+        android:layout_marginBottom="-20dp"
         android:gravity="end"
         app:layout_constraintBottom_toTopOf="@id/rl_loginpage"
         app:layout_constraintEnd_toEndOf="@id/rl_loginpage">
 
-        <TextView
+        <Button
             android:id="@+id/register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/purple_500"
             android:text="REGISTER"
-            android:background="@color/white"
+            android:backgroundTint="@color/white"
             android:textSize="22dp"
             android:textStyle="bold"
             android:onClick="register"
             android:clickable="true">
 
-        </TextView>
+        </Button>
 
     </RelativeLayout>
 

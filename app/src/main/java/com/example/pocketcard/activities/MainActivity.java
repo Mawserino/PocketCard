@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private Button login;
     TextView register;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
