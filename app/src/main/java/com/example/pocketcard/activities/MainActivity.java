@@ -7,12 +7,14 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.pocketcard.R;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button login;
+    TextView register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().hide();
         }
 
+        register = findViewById(R.id.register);
         login = findViewById(R.id.btLogin);
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -31,5 +34,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, HomePage.class));
             }
         });
+    }
+
+    public void register(View view){
+        startActivity(new Intent(MainActivity.this,Register.class));
     }
 }

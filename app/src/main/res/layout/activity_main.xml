@@ -59,7 +59,9 @@
         android:id="@+id/rl_loginpage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_marginTop="-15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:background="@drawable/backgroundlogin"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/iv_header"
@@ -132,6 +134,29 @@
             android:text="Login"
             android:textAllCaps="false"
             android:textColor="@color/colorWhite" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="15dp"
+        app:layout_constraintTop_toBottomOf="@id/rl_loginpage"
+        app:layout_constraintStart_toStartOf="@id/rl_loginpage">
+
+        <TextView
+            android:id="@+id/register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/purple_500"
+            android:text="REGISTER"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:onClick="register"
+            android:clickable="true">
+
+        </TextView>
 
     </RelativeLayout>
 
