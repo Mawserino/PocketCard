@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "625165306921",
+    "project_id": "cseleco8-pocketcardfinals",
+    "storage_bucket": "cseleco8-pocketcardfinals.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:625165306921:android:36689aff828c1961b7e038",
+        "android_client_info": {
+          "package_name": "com.example.pocketcard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "625165306921-hvvs3crc1adq65u40gphvm2qnmk3e3qt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJNr-LaBKGV7bZ4I_jBdRp2vnxMu4txVA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "625165306921-hvvs3crc1adq65u40gphvm2qnmk3e3qt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

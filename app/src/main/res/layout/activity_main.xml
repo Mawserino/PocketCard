@@ -169,28 +169,31 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/rl_loginpage"
-        app:layout_constraintStart_toStartOf="@id/rl_loginpage"
-        app:layout_constraintEnd_toEndOf="@+id/rl_loginpage"
         android:layout_marginLeft="45dp"
+        android:layout_marginTop="-20dp"
         android:layout_marginRight="45dp"
-        android:layout_marginTop="-20dp">
+        app:layout_constraintEnd_toEndOf="@+id/rl_loginpage"
+        app:layout_constraintStart_toStartOf="@id/rl_loginpage"
+        app:layout_constraintTop_toBottomOf="@id/rl_loginpage">
 
         <Button
             android:id="@+id/btLogin"
+            style="@style/Widget.AppCompat.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            style="@style/Widget.AppCompat.Button"
-            android:text="Login"
+            android:drawableRight="@drawable/login"
+            android:text="LOG IN"
             android:textAllCaps="false"
             android:textColor="@color/colorWhite" />
 
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/rl_loginbtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="45dp"

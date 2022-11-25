@@ -9,17 +9,19 @@ public class userModel {
     private String name;
     private String number;
     private String email;
+    private String auid;
 
-    public userModel(){
+    public userModel() {
 
     }
 
-    public userModel(String profile,String name, String number, String email){
+    public userModel(String profile, String name, String number, String email, String auid) {
 
         this.profile = profile;
         this.name = name;
         this.number = number;
         this.email = email;
+        this.auid = auid;
 
     }
 
@@ -54,4 +56,9 @@ public class userModel {
     public void setProfile(String profile) {
         this.profile = profile;
     }
+
+    public String getAuid() {return auid;}
+
+    public void setAuid(String auid) {this.auid = auid;}
+
 }

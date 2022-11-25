@@ -39,18 +39,20 @@
             android:layout_centerHorizontal="true"/>
 
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_pictureLogo"
+            app:shapeAppearanceOverlay="@style/circleImageView"
+            android:adjustViewBounds="true"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/logopocketcard"
             android:layout_marginTop="10dp"
             android:layout_below="@+id/iv_logonameRegis"
             android:layout_centerHorizontal="true"
             android:background="@drawable/circlesolid">
-        </ImageView>
+        </com.google.android.material.imageview.ShapeableImageView>
 
         <Button
+            android:id="@+id/btn_changeImgReg"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_below="@+id/iv_logonameRegis"
