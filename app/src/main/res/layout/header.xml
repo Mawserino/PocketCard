@@ -7,6 +7,8 @@
     android:background="@drawable/bgas"
     android:gravity="center_vertical">
     <ImageView
+        android:layout_marginLeft="20sp"
+        android:id="@+id/iv_logoHeader"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:src="@drawable/logopocketcard"
@@ -14,6 +16,7 @@
 
     </ImageView>
     <TextView
+        android:layout_marginTop="5sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="POCKET CARD"
@@ -21,6 +24,9 @@
         android:textSize="20sp"
         android:textColor="@color/purple_500"/>
     <TextView
+        android:textColor="@color/black"
+        android:id="@+id/tv_nameHeader"
+        android:layout_marginTop="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="YOUR NAME"

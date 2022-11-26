@@ -56,6 +56,7 @@ public class Register extends AppCompatActivity {
     private TextInputLayout tilEmail;
     private TextInputLayout tilName;
     private TextInputLayout tilPassword;
+    private TextInputLayout tilNumber;
     private Button btnSignup;
     private Button btnCancel;
     private Button btnEditImg;
@@ -79,6 +80,7 @@ public class Register extends AppCompatActivity {
         tilEmail = findViewById(R.id.et_emailRegis);
         tilName = findViewById(R.id.et_usernameRegis);
         tilPassword = findViewById(R.id.et_passwordRegis);
+        tilNumber = findViewById(R.id.et_numberRegis);
 
         galleryIntentLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
@@ -137,14 +139,19 @@ public class Register extends AppCompatActivity {
                     tilEmail.getEditText().setError("Input Email");
                     return;
                 }
-                else if (tilPassword.getEditText().getText().toString().equals(""))
+                else if (tilPassword.getEditText().getText().toString().equals("") || tilPassword.getEditText().getText().toString().length() < 6)
                 {
-                    tilPassword.getEditText().setError("Input password");
+                    tilPassword.getEditText().setError("Input password/password must be 6 or more characters");
+                    return;
+                }
+                else if(tilNumber.getEditText().getText().toString().equals("") || tilNumber.getEditText().getText().toString().length() != 11)
+                {
+                    tilNumber.getEditText().setError("Input Number/Number must be 11 or more numbers");
                     return;
                 }
                 else if(!(imageUri != null))
                 {
-                    Toast.makeText(Register.this,"Add Image", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Register.this,"Add Company Logo/Image", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
@@ -177,12 +184,13 @@ public class Register extends AppCompatActivity {
                                                     public void onComplete(@NonNull Task<Uri> task) {
                                                         String t = task.getResult().toString();
 
-                                                        userModel um = new userModel(t,tilName.getEditText().getText().toString(), tilPassword.getEditText().getText().toString(), tilEmail.getEditText().getText().toString(), uid);
+                                                        userModel um = new userModel(t,tilName.getEditText().getText().toString(), tilNumber.getEditText().getText().toString(), tilEmail.getEditText().getText().toString(), uid);
 
 
                                                         DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("users");
                                                         mRef.child(uid).setValue(um);
 
+                                                        mAuth.signOut();
                                                         startActivity(new Intent(Register.this, MainActivity.class));
                                                         finish();
 

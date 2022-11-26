@@ -51,6 +51,17 @@
             android:background="@drawable/circlesolid">
         </com.google.android.material.imageview.ShapeableImageView>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/iv_pictureLogo"
+            android:layout_marginEnd="-10dp"
+            android:layout_marginBottom="-30dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_toStartOf="@+id/iv_pictureLogo"
+            android:text="Company Logo" />
+
         <Button
             android:id="@+id/btn_changeImgReg"
             android:layout_width="48dp"
@@ -137,8 +148,7 @@
             android:layout_marginRight="15dp"
             android:drawablePadding="30dp"
             android:padding="10dp"
-            android:layout_marginBottom="25dp"
-            android:hint="password"
+            android:hint="Password"
             android:layout_below="@id/et_emailRegis">
 
 
@@ -149,6 +159,30 @@
                 android:inputType="textPassword"
                 android:background="@color/white"
                 android:drawableRight="@drawable/ic_lock"
+                android:drawablePadding="10dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_numberRegis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:drawablePadding="30dp"
+            android:padding="10dp"
+            android:layout_marginBottom="25dp"
+            android:hint="Number"
+            android:layout_below="@id/et_passwordRegis">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:background="@color/white"
+                android:drawableRight="@drawable/phonefacingleft"
                 android:drawablePadding="10dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
