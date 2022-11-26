@@ -80,9 +80,6 @@ public class HomePage extends AppCompatActivity {
         navigationView = findViewById(R.id.nav_viewHome);
         View HeaderView = navigationView.getHeaderView(0);
         Name = HeaderView.findViewById(R.id.tv_nameHeader);
-
-
-
         drawerToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
@@ -109,6 +106,7 @@ public class HomePage extends AppCompatActivity {
                     }
                     case R.id.menu_profile:
                     {
+                        startActivity(new Intent(HomePage.this,edit_profile.class));
                         Toast.makeText(HomePage.this,"profile Selected", Toast.LENGTH_SHORT).show();
                         break;
                     }
