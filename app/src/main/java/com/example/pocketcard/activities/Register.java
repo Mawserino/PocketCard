@@ -101,12 +101,15 @@ public class Register extends AppCompatActivity {
                     public void onActivityResult(ActivityResult result) {
                         if(result.getResultCode() == Activity.RESULT_OK){
                             try {
+                                int h = 250;
+                                int w = 250;
                                 Intent data = result.getData();
                                 imageUri = data.getData();
                                 InputStream imageStream = getContentResolver().openInputStream(imageUri);
                                 Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                                Bitmap scaled = Bitmap.createScaledBitmap(selectedImage,w,h,true);
                                 BitmapDrawable ob = new BitmapDrawable(getResources(), selectedImage);
-                                iv_prof.setImageBitmap(selectedImage);
+                                iv_prof.setImageBitmap(scaled);
                                 iv_prof.setBackground(ob);
 
                             } catch (FileNotFoundException e) {
@@ -206,7 +209,6 @@ public class Register extends AppCompatActivity {
 
                                                         mAuth.signOut();
                                                         startActivity(new Intent(Register.this, MainActivity.class));
-                                                        finish();
 
                                                     }
                                                 });

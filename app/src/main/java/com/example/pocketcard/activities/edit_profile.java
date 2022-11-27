@@ -27,12 +27,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
+import android.os.Environment;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
@@ -74,10 +78,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 
@@ -126,12 +134,15 @@ public class edit_profile extends AppCompatActivity {
                     public void onActivityResult(ActivityResult result) {
                         if(result.getResultCode() == Activity.RESULT_OK){
                             try {
+                                int h = 250;
+                                int w = 250;
                                 Intent data = result.getData();
                                 imageUri = data.getData();
                                 InputStream imageStream = getContentResolver().openInputStream(imageUri);
                                 Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                                Bitmap scaled = Bitmap.createScaledBitmap(selectedImage,w,h,true);
                                 BitmapDrawable ob = new BitmapDrawable(getResources(), selectedImage);
-                                iv_profE.setImageBitmap(selectedImage);
+                                iv_profE.setImageBitmap(scaled);
                                 iv_profE.setBackground(ob);
 
                             } catch (FileNotFoundException e) {
@@ -177,9 +188,14 @@ public class edit_profile extends AppCompatActivity {
                         Toast.makeText(edit_profile.this,"settings Selected", Toast.LENGTH_SHORT).show();
                         break;
                     }
-                    case R.id.menu_card:
+                    case R.id.edit_card:
                     {
-                        Toast.makeText(edit_profile.this,"card Selected", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(edit_profile.this,"edit card Selected", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                    case R.id.show_card:
+                    {
+                        Toast.makeText(edit_profile.this,"show card Selected", Toast.LENGTH_SHORT).show();
                         break;
                     }
                     case R.id.menu_profile:
@@ -191,7 +207,6 @@ public class edit_profile extends AppCompatActivity {
                     {
                         mAuth.signOut();
                         startActivity(new Intent(edit_profile.this,MainActivity.class));
-                        finish();
                         break;
                     }
                 }
@@ -207,6 +222,7 @@ public class edit_profile extends AppCompatActivity {
                 NameE.setText(um.getName());
                 NumberE.setText(um.getNumber());
                 String imgUrl = um.getProfile();
+
                 try {
                     iv_profE.setImageBitmap(BitmapFactory.decodeStream(new URL(imgUrl).openConnection().getInputStream()));
                     BitmapDrawable ob = new BitmapDrawable(getResources(), BitmapFactory.decodeStream(new URL(imgUrl).openConnection().getInputStream()));
@@ -276,10 +292,11 @@ public class edit_profile extends AppCompatActivity {
                     contactImageRef.putBytes(data).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
+                            setProgressDialog();
                             Task<Uri> downloadUrl=taskSnapshot.getStorage().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Uri> task) {
+                                    setProgressDialog();
                                     String t = task.getResult().toString();
 
                                     mRef.child("profile").setValue(t);
@@ -350,23 +367,5 @@ public class edit_profile extends AppCompatActivity {
         }
     }
 
-
-    public static Bitmap getBitmapFromURL(String src) {
-        try {
-            Log.e("src",src);
-            URL url = new URL(src);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setDoInput(true);
-            connection.connect();
-            InputStream input = connection.getInputStream();
-            Bitmap myBitmap = BitmapFactory.decodeStream(input);
-            Log.e("Bitmap","returned");
-            return myBitmap;
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.e("Exception",e.getMessage());
-            return null;
-        }
-    }
 
 }

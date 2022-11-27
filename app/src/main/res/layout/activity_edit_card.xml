@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/drawer_editcard"
+    tools:context=".activities.edit_card">
+
+    <RelativeLayout
+        android:id="@+id/rl_headerEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:layout_marginTop="-190dp">
+
+        <ImageView
+            android:id="@+id/iv_editheader"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            app:srcCompat="@drawable/headeredit" />
+
+        <ImageView
+            android:id="@+id/iv_logoheader"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="200dp"
+            app:srcCompat="@drawable/logopocketcard"
+            android:background="@drawable/circlesolid"/>
+
+        <ImageView
+            android:id="@+id/iv_logonameheader"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="110dp"
+            android:layout_marginTop="200dp"
+            app:srcCompat="@drawable/pocketcard" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_footerEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:layout_marginBottom="-190dp">
+
+        <ImageView
+            android:id="@+id/iv_editfooter"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            app:srcCompat="@drawable/footer" />
+    </RelativeLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:headerLayout="@layout/header"
+        app:menu="@menu/card_menu"
+        android:id="@+id/nav_viewEditcard"
+        android:layout_gravity="start">
+
+    </com.google.android.material.navigation.NavigationView>
+
+</androidx.drawerlayout.widget.DrawerLayout>

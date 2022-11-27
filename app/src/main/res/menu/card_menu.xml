@@ -10,9 +10,19 @@
              android:icon="@drawable/ic_baseline_home_24"
              android:title="Home"/>
 
-        <item android:id="@+id/menu_card"
-            android:icon="@drawable/cardp"
-            android:title="Card"/>
+        <item android:title="Card">
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item android:id="@+id/edit_card"
+                        android:icon="@drawable/cardp"
+                        android:title="Edit card"/>
+                    <item android:id="@+id/show_card"
+                        android:icon="@drawable/card"
+                        android:title="Show card"/>
+                </group>
+            </menu>
+        </item>
+
 
         <item android:title="Profile">
             <menu>
