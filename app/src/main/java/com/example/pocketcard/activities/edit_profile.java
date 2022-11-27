@@ -134,14 +134,14 @@ public class edit_profile extends AppCompatActivity {
                     public void onActivityResult(ActivityResult result) {
                         if(result.getResultCode() == Activity.RESULT_OK){
                             try {
-                                int h = 250;
-                                int w = 250;
+                                int h = 200;
+                                int w = 200;
                                 Intent data = result.getData();
                                 imageUri = data.getData();
                                 InputStream imageStream = getContentResolver().openInputStream(imageUri);
                                 Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                                 Bitmap scaled = Bitmap.createScaledBitmap(selectedImage,w,h,true);
-                                BitmapDrawable ob = new BitmapDrawable(getResources(), selectedImage);
+                                BitmapDrawable ob = new BitmapDrawable(getResources(), scaled);
                                 iv_profE.setImageBitmap(scaled);
                                 iv_profE.setBackground(ob);
 
