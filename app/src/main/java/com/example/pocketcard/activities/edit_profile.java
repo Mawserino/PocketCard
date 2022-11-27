@@ -190,17 +190,14 @@ public class edit_profile extends AppCompatActivity {
                     }
                     case R.id.edit_card:
                     {
-                        Toast.makeText(edit_profile.this,"edit card Selected", Toast.LENGTH_SHORT).show();
-                        break;
+                        startActivity(new Intent(edit_profile.this,edit_card.class));                        break;
                     }
                     case R.id.show_card:
                     {
-                        Toast.makeText(edit_profile.this,"show card Selected", Toast.LENGTH_SHORT).show();
-                        break;
+                        startActivity(new Intent(edit_profile.this,show_card.class));                        break;
                     }
                     case R.id.menu_profile:
                     {
-                        Toast.makeText(edit_profile.this,"profile Selected", Toast.LENGTH_SHORT).show();
                         break;
                     }
                     case R.id.menu_logout:

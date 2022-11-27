@@ -20,7 +20,7 @@
         android:id="@+id/rl_nameandlogo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="45dp"
         android:layout_marginRight="45dp"
         android:padding="10dp">
@@ -49,13 +49,15 @@
 
         </TextView>
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:layout_alignParentEnd="true"
             android:id="@+id/iv_logoshowcard"
-            android:layout_marginRight="50dp"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="@drawable/logopocketcard" />
+            android:layout_marginRight="70dp"
+            android:layout_marginTop="10dp"
+            app:shapeAppearanceOverlay="@style/circleImageView"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:background="@drawable/circlesolid" />
 
         <TextView
             android:id="@+id/tv_companyNameShowCard"
@@ -71,7 +73,7 @@
             android:textSize="22sp"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="10dp"
-            android:text="Company"
+            android:text="Company Name"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:textAlignment="center" />
@@ -80,39 +82,41 @@
             android:id="@+id/tv_numbershowcard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_companyNameShowCard"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/tv_occupation"
             android:drawableLeft="@drawable/phoneright"
             android:drawablePadding="10dp"
             android:text="123-456-7890"
             android:fontFamily="sans-serif-condensed"
             android:textColor="@color/black"
-            android:textSize="30sp"/>
+            android:textSize="25sp"/>
 
         <TextView
+            android:id="@+id/tv_emailshowcard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_numbershowcard"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:drawableLeft="@drawable/emailcard"
             android:drawablePadding="10dp"
             android:text="Mail@gmail.com"
             android:fontFamily="sans-serif-condensed"
             android:textColor="@color/black"
-            android:textSize="30sp"
+            android:textSize="25sp"
             />
 
         <TextView
             android:id="@+id/tv_locationshowcard"
-            android:layout_width="wrap_content"
+            android:layout_width="400dp"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/tv_companyNameShowCard"
-            android:layout_below="@id/tv_companyNameShowCard"
+            android:layout_below="@id/tv_emailshowcard"
             android:drawableLeft="@drawable/locationshow"
             android:drawablePadding="10dp"
-            android:layout_marginLeft="-100dp"
-            android:text="blk 16 lot 3 monter verde royale"
+            android:text="location"
             android:fontFamily="sans-serif-condensed"
             android:textColor="@color/black"
-            android:textSize="30sp"/>
+            android:textSize="25sp"/>
 
 
     </RelativeLayout>

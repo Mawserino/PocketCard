@@ -91,7 +91,7 @@ public class HomePage extends AppCompatActivity {
                 {
                     case R.id.menu_home:
                     {
-                        Toast.makeText(HomePage.this,"Home Selected", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HomePage.this,"Home is Selected", Toast.LENGTH_SHORT).show();
                         break;
                     }
                     case R.id.menu_settings:
