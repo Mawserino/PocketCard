@@ -34,17 +34,28 @@ public class cardModel {
         this.auid = auid;
     }
 
-    private String occupation;
+    public String getFavorite() {
+        return favorite;
+    }
 
-    public cardModel(String occupation, String companyname, String location, String auid) {
+    public void setFavorite(String favorite) {
+        this.favorite = favorite;
+    }
+
+    public cardModel(String occupation, String companyname, String location,String favorite, String auid) {
         this.occupation = occupation;
         this.companyname = companyname;
         this.location = location;
+        this.favorite = favorite;
         this.auid = auid;
     }
 
+    private String occupation;
     private String companyname;
     private String location;
+
+
+    private String favorite;
     private String auid;
 
     public cardModel(){

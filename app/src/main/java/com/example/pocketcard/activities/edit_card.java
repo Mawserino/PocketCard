@@ -208,8 +208,8 @@ public class edit_card extends AppCompatActivity {
                 else{
 
                     setProgressDialog();
-
-                    cardModel cm = new cardModel(occupation.getEditText().getText().toString(),companyName.getEditText().getText().toString(),location.getEditText().getText().toString(),uid);
+                    String fav = "1";
+                    cardModel cm = new cardModel(occupation.getEditText().getText().toString(),companyName.getEditText().getText().toString(),location.getEditText().getText().toString(),fav,uid);
                     DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("usersCard");
                     try {
                         mRef.child(uid).setValue(cm);
