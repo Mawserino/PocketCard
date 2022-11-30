@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'com.example.pocketcard'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.example.pocketcard"
         minSdk 27
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -43,9 +43,11 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-storage:20.1.0'
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 
-    implementation 'com.google.zxing:core:3.2.1'
+    implementation 'com.google.zxing:core:3.4.0'
     implementation 'com.journeyapps:zxing-android-embedded:4.1.0'
+
+    implementation 'com.google.android.material:material:1.8.0-alpha03'
 }
