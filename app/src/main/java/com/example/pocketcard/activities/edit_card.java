@@ -146,6 +146,11 @@ public class edit_card extends AppCompatActivity {
                         startActivity(new Intent(edit_card.this,MainActivity.class));
                         break;
                     }
+                    case R.id.user_Qr:
+                    {
+                        startActivity(new Intent(edit_card.this, Qr_profile.class));
+                        break;
+                    }
                 }
                 return false;
             }

@@ -122,6 +122,11 @@ public class show_card extends AppCompatActivity {
                         startActivity(new Intent(show_card.this,MainActivity.class));
                         break;
                     }
+                    case R.id.user_Qr:
+                    {
+                        startActivity(new Intent(show_card.this, Qr_profile.class));
+                        break;
+                    }
                 }
                 return false;
             }

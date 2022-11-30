@@ -206,6 +206,11 @@ public class edit_profile extends AppCompatActivity {
                         startActivity(new Intent(edit_profile.this,MainActivity.class));
                         break;
                     }
+                    case R.id.user_Qr:
+                    {
+                        startActivity(new Intent(edit_profile.this, Qr_profile.class));
+                        break;
+                    }
                 }
                 return false;
             }

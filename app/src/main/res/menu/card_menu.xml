@@ -9,6 +9,9 @@
          <item android:id="@+id/menu_home"
              android:icon="@drawable/ic_baseline_home_24"
              android:title="Home"/>
+        <item android:id="@+id/user_Qr"
+            android:icon="@drawable/ic_baseline_qr_code_24"
+            android:title="QrCode"/>
 
         <item android:title="Card">
             <menu>

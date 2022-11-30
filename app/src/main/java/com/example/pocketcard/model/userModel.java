@@ -5,11 +5,11 @@ import android.widget.ImageView;
 public class userModel {
 
 
-    private String profile;
-    private String name;
-    private String number;
-    private String email;
-    private String auid;
+    public String profile;
+    public String name;
+    public String number;
+    public String email;
+    public String auid;
 
     public userModel() {
 
