@@ -1,12 +1,19 @@
 package com.example.pocketcard.activities;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pocketcard.R;
+import com.example.pocketcard.model.rvModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -15,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -29,6 +37,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
@@ -45,7 +55,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class HomePage extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class HomePage extends AppCompatActivity implements Myadapter.onContactClickListener {
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -55,6 +67,12 @@ public class HomePage extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private DatabaseReference mRef;
+
+    private RecyclerView rv_list;
+    private ArrayList<rvModel> arrContacts;
+    private DatabaseReference mref;
+
+    FloatingActionButton scan;
 
     ImageButton menu;
 
@@ -71,6 +89,12 @@ public class HomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+        rv_list = findViewById(R.id.rv_menu);
+        arrContacts = new ArrayList<>();
+
+        dbCollect();
+        loadContactsList();
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
@@ -137,7 +161,55 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
+        scan = findViewById(R.id.fab);
+        IntentIntegrator qrScan = new IntentIntegrator(this);
+        scan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                qrScan.setPrompt("Scan");
+                qrScan.setCameraId(0); //0 - back cam, 1 - front cam
+                qrScan.setBeepEnabled(true);
+                qrScan.initiateScan();
+
+            }
+        });
+
+
+    }
+
+    private void loadContactsList() {
+
+        Myadapter adapter = new Myadapter(arrContacts, this);
+        rv_list = findViewById(R.id.rv_menu);
+        rv_list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        rv_list.setAdapter(adapter);
+    }
+
+    private void dbCollect() {
+
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+
+        mref = FirebaseDatabase.getInstance().getReference("userContacts");
+
+        mref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren())
+                {
+                    Log.d(TAG, "onDataChange: ");
+                    rvModel user = dataSnapshot.getValue(rvModel.class);
+                    arrContacts.add(new rvModel(user.getName(),user.getoccupation(),user.getEmail()));
+                    loadContactsList();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     @Override
@@ -147,6 +219,28 @@ public class HomePage extends AppCompatActivity {
         }
         else{
             super.onBackPressed();
+        }
+    }
+
+    @Override
+    public void onContactClick(int position) {
+
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if(intentResult != null){
+            if(intentResult.getContents() == null){
+                //TODO cancelledjohn
+            }else {
+                Intent start = new Intent(HomePage.this, cardScan.class);
+                start.putExtra("uid", intentResult.getContents());
+                startActivity(start);
+            }
+        }else {
+            super.onActivityResult(requestCode, resultCode, data);
         }
     }
 }
