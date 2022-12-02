@@ -54,7 +54,7 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         String name = arrContacts.get(position).getName();
-        String occupation = arrContacts.get(position).getoccupation();
+        String occupation = arrContacts.get(position).getOccupation2();
         holder.userName.setText(name);
         holder.userOccupation.setText(occupation);
 

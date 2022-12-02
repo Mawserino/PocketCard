@@ -4,20 +4,38 @@ import android.widget.ImageView;
 
 public class rvModel {
 
+    private String fav;
     private ImageView company;
     private String name;
-    private String occupation;
+    private String occupation2;
     private String email;
     private String userUID;
 
 
 
 
-    public rvModel(String name, String occupation, String email){
+    public rvModel(String name, String occupation2, String userUID, String fav){
 
         this.name = name;
-        this.occupation = occupation;
+        this.occupation2 = occupation2;
         this.userUID = userUID;
+        this.fav = this.fav;
+    }
+
+    public String getfav() {
+        return fav;
+    }
+
+    public void setfav(String fav) {
+        this.fav = fav;
+    }
+
+    public String getOccupation2() {
+        return occupation2;
+    }
+
+    public void setOccupation2(String occupation2) {
+        this.occupation2 = occupation2;
     }
 
     public ImageView getCompany() {return company;}
@@ -32,13 +50,6 @@ public class rvModel {
         this.name = name;
     }
 
-    public String getoccupation() {
-        return occupation;
-    }
-
-    public void setoccupation(String occupation) {
-        this.occupation = occupation;
-    }
 
     public String getEmail() {
         return email;
@@ -48,13 +59,6 @@ public class rvModel {
         this.email = email;
     }
 
-    public String getOccupation() {
-        return occupation;
-    }
-
-    public void setOccupation(String occupation) {
-        this.occupation = occupation;
-    }
 
     public String getUserUID() {
         return userUID;

@@ -19,10 +19,9 @@ import android.widget.Toast;
 
 import com.example.pocketcard.R;
 import com.example.pocketcard.model.cardModel;
-import com.example.pocketcard.model.saveModel;
+import com.example.pocketcard.model.rvModel;
 import com.example.pocketcard.model.userModel;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -42,8 +41,8 @@ public class cardScan extends AppCompatActivity {
     private TextView Name;
 
     private FirebaseAuth mAuth;
-    private FirebaseUser mUser,otheruser;
-    private DatabaseReference mRef,mRefC;
+    private FirebaseUser mUser;
+    private DatabaseReference mRef,mRefC,otheruser;
 
     ImageView logo;
     TextView NameS,occupationS,numberS,EmailS,locationS,companyNameS;
@@ -200,16 +199,13 @@ public class cardScan extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                otheruser = FirebaseDatabase.getInstance().getReference(getIntent().getStringExtra("uid"));
 
-                DatabaseReference mRefC = FirebaseDatabase.getInstance().getReference("usersCard/" + getIntent().getStringExtra("uid"));
-                DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("userScan");
-                String uid = mAuth.getCurrentUser().getUid();
-                try {
-                    mRef.child(uid).setValue(mRefC);
-                    startActivity(new Intent(cardScan.this, HomePage.class));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                rvModel rm = new rvModel(NameS.getText().toString(), occupationS.getText().toString(), mUser.getUid(), "0");
+                Toast.makeText(cardScan.this,NameS.getText().toString()+occupationS.getText().toString(),Toast.LENGTH_LONG).show();
+                DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("usersScan/").child(mUser.getUid());
+                mRef.child(mUser.getUid()).setValue(rm);
+                startActivity(new Intent(cardScan.this, HomePage.class));
 
             }
         });
