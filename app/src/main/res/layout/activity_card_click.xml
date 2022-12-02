@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="match_parent"
+    android:id="@+id/drawer_cardClick"
+    tools:context=".activities.show_card">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/templatecard">
+
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_nameandlogo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tv_nameshowcard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textColor="@color/black"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
+            android:textSize="35dp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_occupation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_nameshowcard"
+            android:textColor="@color/black"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Occupation"
+            android:textSize="35dp">
+
+        </TextView>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_alignParentEnd="true"
+            android:id="@+id/iv_logoshowcard"
+            android:layout_marginRight="70dp"
+            android:layout_marginTop="10dp"
+            app:shapeAppearanceOverlay="@style/circleImageView"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:background="@drawable/circlesolid" />
+
+        <TextView
+            android:id="@+id/tv_companyNameShowCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_logoshowcard"
+            android:layout_marginRight="-60dp"
+            android:layout_marginLeft="-60dp"
+            android:layout_alignStart="@+id/iv_logoshowcard"
+            android:layout_alignEnd="@+id/iv_logoshowcard"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="monospace"
+            android:textSize="22sp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="10dp"
+            android:text="Company Name"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/tv_numbershowcard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/tv_occupation"
+            android:drawableLeft="@drawable/phoneright"
+            android:drawablePadding="10dp"
+            android:text="123-456-7890"
+            android:fontFamily="sans-serif-condensed"
+            android:textColor="@color/black"
+            android:textSize="25sp"/>
+
+        <TextView
+            android:id="@+id/tv_emailshowcard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_numbershowcard"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:drawableLeft="@drawable/emailcard"
+            android:drawablePadding="10dp"
+            android:text="Mail@gmail.com"
+            android:fontFamily="sans-serif-condensed"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            />
+
+        <TextView
+            android:id="@+id/tv_locationshowcard"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_emailshowcard"
+            android:drawableLeft="@drawable/locationshow"
+            android:drawablePadding="10dp"
+            android:text="location"
+            android:fontFamily="sans-serif-condensed"
+            android:textColor="@color/black"
+            android:textSize="25sp"/>
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom">
+
+        <Button
+            android:id="@+id/btn_addFav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="add"
+            android:layout_marginEnd="25dp"/>
+        <Button
+            android:layout_toLeftOf="@+id/btn_addFav"
+            android:id="@+id/btn_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            android:layout_marginEnd="25dp"/>
+
+    </RelativeLayout>
+
+
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:headerLayout="@layout/header"
+        app:menu="@menu/card_menu"
+        android:id="@+id/nav_cardClick"
+        android:layout_gravity="start">
+
+    </com.google.android.material.navigation.NavigationView>
+
+</androidx.drawerlayout.widget.DrawerLayout>

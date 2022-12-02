@@ -209,6 +209,9 @@ public class HomePage extends AppCompatActivity implements Myadapter.onContactCl
 
     @Override
     public void onContactClick(int position) {
+        Intent intent = new Intent(this, cardClick.class);
+        intent.putExtra("userUID", arrContacts.get(position).getUserUID());
+        startActivity(intent);
 
     }
 
