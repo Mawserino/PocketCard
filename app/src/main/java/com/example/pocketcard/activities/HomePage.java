@@ -77,9 +77,6 @@ public class HomePage extends AppCompatActivity implements Myadapter.onContactCl
         rv_list = findViewById(R.id.rv_menu);
         arrContacts = new ArrayList<>();
 
-        dbCollect();
-        loadContactsList();
-
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         mRef = FirebaseDatabase.getInstance().getReference("users/" + mUser.getUid());
@@ -159,15 +156,10 @@ public class HomePage extends AppCompatActivity implements Myadapter.onContactCl
             }
         });
 
+        dbCollect();
+        loadContactsList();
 
-    }
 
-    private void loadContactsList() {
-
-        Myadapter adapter = new Myadapter(arrContacts, this);
-        rv_list = findViewById(R.id.rv_menu);
-        rv_list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        rv_list.setAdapter(adapter);
     }
 
     private void dbCollect() {
@@ -175,7 +167,7 @@ public class HomePage extends AppCompatActivity implements Myadapter.onContactCl
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
 
-        mref = FirebaseDatabase.getInstance().getReference("userContacts");
+        mref = FirebaseDatabase.getInstance().getReference("usersScan/" + mUser.getUid());
 
         mref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -184,7 +176,7 @@ public class HomePage extends AppCompatActivity implements Myadapter.onContactCl
                 {
                     Log.d(TAG, "onDataChange: ");
                     rvModel user = dataSnapshot.getValue(rvModel.class);
-                    arrContacts.add(new rvModel(user.getName(),user.getOccupation2(),user.getEmail(), "0"));
+                    arrContacts.add(new rvModel(user.getName(),user.getOccupation2(),user.getUserUID(), user.getfav(),user.getCompanyname2()));
                     loadContactsList();
                 }
             }
@@ -195,6 +187,15 @@ public class HomePage extends AppCompatActivity implements Myadapter.onContactCl
             }
         });
     }
+
+    private void loadContactsList() {
+
+        Myadapter adapter = new Myadapter(arrContacts, this);
+        rv_list = findViewById(R.id.rv_menu);
+        rv_list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        rv_list.setAdapter(adapter);
+    }
+
 
     @Override
     public void onBackPressed() {

@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pocketcard.R;
 import com.example.pocketcard.model.rvModel;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder>{
@@ -27,11 +29,13 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder>{
     {
         private TextView userName;
         private TextView userOccupation;
+        private TextView userCompanyName;
         onContactClickListener conListener;
         public MyViewHolder(final View view, onContactClickListener conLis){
             super(view);
             userName = view.findViewById(R.id.userName);
             userOccupation = view.findViewById(R.id.userOccupation);
+            userCompanyName = view.findViewById(R.id.userCompanyName);
 
             this.conListener = conLis;
 
@@ -55,8 +59,10 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder>{
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         String name = arrContacts.get(position).getName();
         String occupation = arrContacts.get(position).getOccupation2();
+        String companyname = arrContacts.get(position).getCompanyname2();
         holder.userName.setText(name);
         holder.userOccupation.setText(occupation);
+        holder.userCompanyName.setText(companyname);
 
     }
 
