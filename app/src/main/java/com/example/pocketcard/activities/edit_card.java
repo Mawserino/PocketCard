@@ -120,14 +120,9 @@ public class edit_card extends AppCompatActivity {
                         startActivity(new Intent(edit_card.this,HomePage.class));
                         break;
                     }
-                    case R.id.menu_settings:
-                    {
-                        Toast.makeText(edit_card.this,"settings Selected", Toast.LENGTH_SHORT).show();
-                        break;
-                    }
                     case R.id.edit_card:
                     {
-                        startActivity(new Intent(edit_card.this,edit_card.class));
+                        Toast.makeText(edit_card.this, "settings Selected", Toast.LENGTH_SHORT).show();
                         break;
                     }
                     case R.id.show_card:

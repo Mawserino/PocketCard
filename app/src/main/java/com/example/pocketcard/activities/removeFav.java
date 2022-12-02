@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -33,7 +34,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.IOException;
 import java.net.URL;
 
-public class cardScan extends AppCompatActivity {
+public class removeFav extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -42,11 +43,11 @@ public class cardScan extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
-    private DatabaseReference mRef,mRefC,otheruser;
+    private DatabaseReference mRef,mRefC;
 
     ImageView logo;
     TextView NameS,occupationS,numberS,EmailS,locationS,companyNameS;
-    Button save;
+    Button removeFav;
 
 
 
@@ -63,7 +64,7 @@ public class cardScan extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_card_scan);
+        setContentView(R.layout.activity_remove_fav);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 
@@ -73,8 +74,8 @@ public class cardScan extends AppCompatActivity {
         mUser = mAuth.getCurrentUser();
         mRef = FirebaseDatabase.getInstance().getReference("users/" + mUser.getUid());
 
-        drawerLayout = findViewById(R.id.drawer_cardScan);
-        navigationView = findViewById(R.id.nav_cardScan);
+        drawerLayout = findViewById(R.id.drawer_removeFav);
+        navigationView = findViewById(R.id.nav_removeFav);
         View HeaderView = navigationView.getHeaderView(0);
         Name = HeaderView.findViewById(R.id.tv_nameHeader);
         drawerToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
@@ -86,29 +87,29 @@ public class cardScan extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.menu_home: {
-                        startActivity(new Intent(cardScan.this,HomePage.class));
+                        startActivity(new Intent(removeFav.this,HomePage.class));
                         break;
                     }
                     case R.id.edit_card: {
-                        startActivity(new Intent(cardScan.this, edit_card.class));
+                        startActivity(new Intent(removeFav.this, edit_card.class));
                         break;
                     }
                     case R.id.show_card: {
-                        startActivity(new Intent(cardScan.this, show_card.class));
+                        startActivity(new Intent(removeFav.this, show_card.class));
                         break;
                     }
                     case R.id.menu_profile: {
-                        startActivity(new Intent(cardScan.this, edit_profile.class));
+                        startActivity(new Intent(removeFav.this, edit_profile.class));
                         break;
                     }
                     case R.id.menu_logout: {
                         mAuth.signOut();
-                        startActivity(new Intent(cardScan.this, MainActivity.class));
+                        startActivity(new Intent(removeFav.this, MainActivity.class));
                         break;
                     }
                     case R.id.user_Qr:
                     {
-                        startActivity(new Intent(cardScan.this, Qr_profile.class));
+                        startActivity(new Intent(removeFav.this, Qr_profile.class));
                         break;
                     }
                 }
@@ -123,7 +124,8 @@ public class cardScan extends AppCompatActivity {
         locationS = findViewById(R.id.tv_locationshowcard);
         companyNameS = findViewById(R.id.tv_companyNameShowCard);
         logo = findViewById(R.id.iv_logoshowcard);
-        save = findViewById(R.id.btn_save);
+        removeFav = findViewById(R.id.btn_removeFav);
+
 
 
 
@@ -144,8 +146,12 @@ public class cardScan extends AppCompatActivity {
             }
         });
 
-        mRef = FirebaseDatabase.getInstance().getReference("users/" + getIntent().getStringExtra("uid"));
-        mRefC = FirebaseDatabase.getInstance().getReference("usersCard/" + getIntent().getStringExtra("uid"));
+        Bundle intent = getIntent().getExtras();
+        String uid = intent.getString("userUID");
+
+
+        mRef = FirebaseDatabase.getInstance().getReference("users/" + uid);
+        mRefC = FirebaseDatabase.getInstance().getReference("usersCard/" + uid);
 
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -191,20 +197,20 @@ public class cardScan extends AppCompatActivity {
             }
         });
 
-        save.setOnClickListener(new View.OnClickListener() {
+        removeFav.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
 
-                rvModel rm = new rvModel(NameS.getText().toString(), occupationS.getText().toString(), getIntent().getStringExtra("uid"), "0",companyNameS.getText().toString());
-                Toast.makeText(cardScan.this,NameS.getText().toString()+occupationS.getText().toString(),Toast.LENGTH_LONG).show();
-                DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("usersScan/").child(mUser.getUid());
-                mRef.child(getIntent().getStringExtra("uid")).setValue(rm);
-                startActivity(new Intent(cardScan.this, HomePage.class));
+                DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("usersScan/" + mUser.getUid());
+                rvModel rm = new rvModel(NameS.getText().toString(), occupationS.getText().toString(), uid, "0",companyNameS.getText().toString());
+                try {
+                    mRef.child(uid).setValue(rm);
+                    startActivity(new Intent(removeFav.this, HomePage.class));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
             }
         });
-    }
-
-
-
+    }//onCreate
 }

@@ -90,10 +90,6 @@ public class cardClick extends AppCompatActivity {
                         startActivity(new Intent(cardClick.this,HomePage.class));
                         break;
                     }
-                    case R.id.menu_settings: {
-                        Toast.makeText(cardClick.this, "settings Selected", Toast.LENGTH_SHORT).show();
-                        break;
-                    }
                     case R.id.edit_card: {
                         startActivity(new Intent(cardClick.this, edit_card.class));
                         break;
@@ -205,8 +201,10 @@ public class cardClick extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                 DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("usersScan/" + mUser.getUid());
-                rvModel rm = new rvModel(NameS.getText().toString(), occupationS.getText().toString(), getIntent().getStringExtra("uid"), "1",companyNameS.getText().toString());
+                rvModel rm = new rvModel(NameS.getText().toString(), occupationS.getText().toString(), uid, "1",companyNameS.getText().toString());
+                Toast.makeText(cardClick.this,NameS.getText().toString(),Toast.LENGTH_LONG).show();
                 try {
                     mRef.child(uid).setValue(rm);
                     startActivity(new Intent(cardClick.this, HomePage.class));

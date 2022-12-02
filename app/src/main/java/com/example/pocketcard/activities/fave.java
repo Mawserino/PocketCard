@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pocketcard.R;
 import com.example.pocketcard.model.rvModel;
+import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
@@ -23,7 +24,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -44,12 +44,12 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class HomePage extends AppCompatActivity implements Myadapter.onContactClickListener {
+public class fave extends AppCompatActivity implements Myadapter.onContactClickListener {
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    ActionBarDrawerToggle drawerToggle;
     BottomNavigationView bottomAppBar;
+    ActionBarDrawerToggle drawerToggle;
     private TextView Name;
 
     private FirebaseAuth mAuth;
@@ -76,7 +76,7 @@ public class HomePage extends AppCompatActivity implements Myadapter.onContactCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
+        setContentView(R.layout.activity_fave);
 
         rv_list = findViewById(R.id.rv_menu);
         arrContacts = new ArrayList<>();
@@ -92,19 +92,19 @@ public class HomePage extends AppCompatActivity implements Myadapter.onContactCl
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()) {
                     case R.id.Group:
-                        Toast.makeText(HomePage.this, "Group is Selected", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(fave.this, HomePage.class));
                         break;
 
                     case R.id.Favorite:
-                        startActivity(new Intent(HomePage.this, fave.class));
+                        Toast.makeText(fave.this, "Favorite is Selected", Toast.LENGTH_SHORT).show();
                         break;
                 }
                 return false;
             }
         });
 
-        drawerLayout = findViewById(R.id.drawer_home);
-        navigationView = findViewById(R.id.nav_viewHome);
+        drawerLayout = findViewById(R.id.drawer_fave);
+        navigationView = findViewById(R.id.nav_fave);
         View HeaderView = navigationView.getHeaderView(0);
         Name = HeaderView.findViewById(R.id.tv_nameHeader);
         drawerToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
@@ -116,29 +116,29 @@ public class HomePage extends AppCompatActivity implements Myadapter.onContactCl
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.menu_home: {
-                        Toast.makeText(HomePage.this, "Home is Selected", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(fave.this, "Home is Selected", Toast.LENGTH_SHORT).show();
                         break;
                     }
                     case R.id.edit_card: {
-                        startActivity(new Intent(HomePage.this, edit_card.class));
+                        startActivity(new Intent(fave.this, edit_card.class));
                         break;
                     }
                     case R.id.show_card: {
-                        startActivity(new Intent(HomePage.this, show_card.class));
+                        startActivity(new Intent(fave.this, show_card.class));
                         break;
                     }
                     case R.id.menu_profile: {
-                        startActivity(new Intent(HomePage.this, edit_profile.class));
+                        startActivity(new Intent(fave.this, edit_profile.class));
                         break;
                     }
                     case R.id.menu_logout: {
                         mAuth.signOut();
-                        startActivity(new Intent(HomePage.this, MainActivity.class));
+                        startActivity(new Intent(fave.this, MainActivity.class));
                         break;
                     }
                     case R.id.user_Qr:
                     {
-                        startActivity(new Intent(HomePage.this, Qr_profile.class));
+                        startActivity(new Intent(fave.this, Qr_profile.class));
                         break;
                     }
                 }
@@ -194,7 +194,10 @@ public class HomePage extends AppCompatActivity implements Myadapter.onContactCl
                 {
                     Log.d(TAG, "onDataChange: ");
                     rvModel user = dataSnapshot.getValue(rvModel.class);
-                    arrContacts.add(new rvModel(user.getName(),user.getOccupation2(),user.getUserUID(), user.getfav(),user.getCompanyname2()));
+                    if(user.getfav().equals("1"))
+                    {
+                        arrContacts.add(new rvModel(user.getName(),user.getOccupation2(),user.getUserUID(), user.getfav(),user.getCompanyname2()));
+                    }
                     loadContactsList();
                 }
             }
@@ -212,11 +215,6 @@ public class HomePage extends AppCompatActivity implements Myadapter.onContactCl
         rv_list = findViewById(R.id.rv_menu);
         rv_list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rv_list.setAdapter(adapter);
-
-        if(adapter.getItemCount() == 0 )
-        {
-            drawerLayout.setBackground(getResources().getDrawable(R.drawable.emptybox));
-        }
     }
 
 
@@ -232,7 +230,7 @@ public class HomePage extends AppCompatActivity implements Myadapter.onContactCl
 
     @Override
     public void onContactClick(int position) {
-        Intent intent = new Intent(this, cardClick.class);
+        Intent intent = new Intent(this, removeFav.class);
         intent.putExtra("userUID", arrContacts.get(position).getUserUID());
         startActivity(intent);
 
@@ -246,7 +244,7 @@ public class HomePage extends AppCompatActivity implements Myadapter.onContactCl
             if(intentResult.getContents() == null){
                 //TODO cancelledjohn
             }else {
-                Intent start = new Intent(HomePage.this, cardScan.class);
+                Intent start = new Intent(fave.this, cardScan.class);
                 start.putExtra("uid", intentResult.getContents());
                 startActivity(start);
             }

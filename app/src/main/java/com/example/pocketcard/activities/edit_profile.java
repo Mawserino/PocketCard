@@ -183,11 +183,6 @@ public class edit_profile extends AppCompatActivity {
                         startActivity(new Intent(edit_profile.this,HomePage.class));
                         break;
                     }
-                    case R.id.menu_settings:
-                    {
-                        Toast.makeText(edit_profile.this,"settings Selected", Toast.LENGTH_SHORT).show();
-                        break;
-                    }
                     case R.id.edit_card:
                     {
                         startActivity(new Intent(edit_profile.this,edit_card.class));                        break;
@@ -198,6 +193,7 @@ public class edit_profile extends AppCompatActivity {
                     }
                     case R.id.menu_profile:
                     {
+                        Toast.makeText(edit_profile.this, "settings Selected", Toast.LENGTH_SHORT).show();
                         break;
                     }
                     case R.id.menu_logout:

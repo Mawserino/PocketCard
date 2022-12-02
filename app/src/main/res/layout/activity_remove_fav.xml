@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:orientation="horizontal"
     android:layout_height="match_parent"
-    android:id="@+id/drawer_cardClick"
-    tools:context=".activities.show_card">
+    android:id="@+id/drawer_removeFav"
+    tools:context=".activities.removeFav">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -126,18 +126,11 @@
         android:gravity="bottom">
 
         <Button
-            android:id="@+id/btn_addFav"
+            android:id="@+id/btn_removeFav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:text="ADD to favorite"
-            android:layout_marginEnd="25dp"/>
-        <Button
-            android:layout_toLeftOf="@+id/btn_addFav"
-            android:id="@+id/btn_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Delete"
+            android:text="Remove favorite"
             android:layout_marginEnd="25dp"/>
 
     </RelativeLayout>
@@ -149,7 +142,7 @@
         android:layout_height="match_parent"
         app:headerLayout="@layout/header"
         app:menu="@menu/card_menu"
-        android:id="@+id/nav_cardClick"
+        android:id="@+id/nav_removeFav"
         android:layout_gravity="start">
 
     </com.google.android.material.navigation.NavigationView>

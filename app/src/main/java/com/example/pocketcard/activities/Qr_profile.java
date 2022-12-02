@@ -1,7 +1,10 @@
 package com.example.pocketcard.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.MenuItem;
@@ -19,6 +22,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.pocketcard.R;
 import com.example.pocketcard.model.userModel;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,6 +36,9 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.encoder.QRCode;
+
+import java.io.IOException;
+import java.net.URL;
 
 public class Qr_profile extends AppCompatActivity {
 
@@ -47,6 +54,8 @@ public class Qr_profile extends AppCompatActivity {
     private FirebaseUser mUser;
     private DatabaseReference mRef;
     private String signGoogle;
+
+    private ShapeableImageView iv_profE;
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -86,10 +95,6 @@ public class Qr_profile extends AppCompatActivity {
                         startActivity(new Intent(Qr_profile.this,HomePage.class));
                         break;
                     }
-                    case R.id.menu_settings: {
-                        Toast.makeText(Qr_profile.this, "settings Selected", Toast.LENGTH_SHORT).show();
-                        break;
-                    }
                     case R.id.edit_card: {
                         startActivity(new Intent(Qr_profile.this, edit_card.class));
                         break;
@@ -109,7 +114,7 @@ public class Qr_profile extends AppCompatActivity {
                     }
                     case R.id.user_Qr:
                     {
-                        startActivity(new Intent(Qr_profile.this, Qr_profile.class));
+                        Toast.makeText(Qr_profile.this, "settings Selected", Toast.LENGTH_SHORT).show();
                         break;
                     }
                 }
@@ -125,6 +130,7 @@ public class Qr_profile extends AppCompatActivity {
 
         userName = findViewById(R.id.userName);
         userQr = findViewById(R.id.userQr);
+        iv_profE = findViewById(R.id.iv_pictureLogoEdit);
 
         generateQr(mUser.getUid());
 
@@ -132,8 +138,17 @@ public class Qr_profile extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 userModel um = snapshot.getValue(userModel.class);
+                String imgUrl = um.getProfile();
                 userName.setText(um.name);
                 Name.setText(um.getName());
+
+                try {
+                    iv_profE.setImageBitmap(BitmapFactory.decodeStream(new URL(imgUrl).openConnection().getInputStream()));
+                    BitmapDrawable ob = new BitmapDrawable(getResources(), BitmapFactory.decodeStream(new URL(imgUrl).openConnection().getInputStream()));
+                    iv_profE.setBackground(ob);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
