@@ -69,6 +69,7 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder>{
     @Override
     public int getItemCount() {
         return arrContacts.size();
+
     }
 
     public interface onContactClickListener

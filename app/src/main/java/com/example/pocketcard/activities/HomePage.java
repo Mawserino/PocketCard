@@ -213,10 +213,6 @@ public class HomePage extends AppCompatActivity implements Myadapter.onContactCl
         rv_list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rv_list.setAdapter(adapter);
 
-        if(adapter.getItemCount() == 0 )
-        {
-            drawerLayout.setBackground(getResources().getDrawable(R.drawable.emptybox));
-        }
     }
 
 

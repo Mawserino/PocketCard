@@ -106,19 +106,6 @@
             app:layout_constraintStart_toStartOf="parent" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/rl_footerEdit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="bottom"
-        android:layout_marginBottom="-190dp">
-
-        <ImageView
-            android:id="@+id/iv_editfooter"
-            android:layout_width="match_parent"
-            android:layout_height="500dp"
-            app:srcCompat="@drawable/editfooter" />
-    </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"

@@ -205,6 +205,7 @@ public class removeFav extends AppCompatActivity {
                 rvModel rm = new rvModel(NameS.getText().toString(), occupationS.getText().toString(), uid, "0",companyNameS.getText().toString());
                 try {
                     mRef.child(uid).setValue(rm);
+                    Toast.makeText(removeFav.this, "Remove to favorites", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(removeFav.this, HomePage.class));
                 } catch (Exception e) {
                     e.printStackTrace();

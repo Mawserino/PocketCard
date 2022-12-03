@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if(task.isSuccessful()){
                                         Intent start = new Intent(MainActivity.this, HomePage.class);
-                                        start.putExtra("uid", "NotGoogle");
                                         startActivity(start);
 
                                     }else {

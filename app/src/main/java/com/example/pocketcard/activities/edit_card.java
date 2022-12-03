@@ -213,6 +213,7 @@ public class edit_card extends AppCompatActivity {
                     DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("usersCard");
                     try {
                         mRef.child(uid).setValue(cm);
+
                         startActivity(new Intent(edit_card.this, show_card.class));
                     } catch (Exception e) {
                         e.printStackTrace();

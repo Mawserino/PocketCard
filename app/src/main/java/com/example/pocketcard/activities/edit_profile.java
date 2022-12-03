@@ -300,7 +300,7 @@ public class edit_profile extends AppCompatActivity {
                                     mRef.child("profile").setValue(t);
                                     mRef.child("name").setValue(tilNameE.getEditText().getText().toString());
                                     mRef.child("number").setValue(tilNumberE.getEditText().getText().toString());
-
+                                    Toast.makeText(edit_profile.this, "Profile edited successfully", Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(edit_profile.this, HomePage.class));
                                     finish();
 

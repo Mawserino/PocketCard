@@ -204,9 +204,9 @@ public class cardClick extends AppCompatActivity {
 
                 DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("usersScan/" + mUser.getUid());
                 rvModel rm = new rvModel(NameS.getText().toString(), occupationS.getText().toString(), uid, "1",companyNameS.getText().toString());
-                Toast.makeText(cardClick.this,NameS.getText().toString(),Toast.LENGTH_LONG).show();
                 try {
                     mRef.child(uid).setValue(rm);
+                    Toast.makeText(cardClick.this, "Added to favorites", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(cardClick.this, HomePage.class));
                 } catch (Exception e) {
                     e.printStackTrace();

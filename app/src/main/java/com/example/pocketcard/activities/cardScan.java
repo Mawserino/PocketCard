@@ -196,7 +196,6 @@ public class cardScan extends AppCompatActivity {
             public void onClick(View view) {
 
                 rvModel rm = new rvModel(NameS.getText().toString(), occupationS.getText().toString(), getIntent().getStringExtra("uid"), "0",companyNameS.getText().toString());
-                Toast.makeText(cardScan.this,NameS.getText().toString()+occupationS.getText().toString(),Toast.LENGTH_LONG).show();
                 DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("usersScan/").child(mUser.getUid());
                 mRef.child(getIntent().getStringExtra("uid")).setValue(rm);
                 startActivity(new Intent(cardScan.this, HomePage.class));
